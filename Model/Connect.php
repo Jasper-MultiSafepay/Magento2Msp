@@ -1027,7 +1027,7 @@ class Connect extends \Magento\Payment\Model\Method\AbstractMethod
 
                 if ($order_email == "after_transaction_paid" && !$order->getEmailSent()) {
                     $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-                    $objectManager->create('Magento\Sales\Model\OrderNotifier')->notify($order);
+                    $objectManager->create('Magento\Sales\Model\Order\Email\Sender\OrderSender')->send($order, true);
                 }
 
                 $this->_registerPaymentCapture(true, $transactionid, $order, $msporder);
